@@ -12,6 +12,7 @@ public class Main extends Application {
 
     private int min = 0, max = 0, searched;
     private Controller controller;
+    private boolean isRunning = false;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -42,7 +43,11 @@ public class Main extends Application {
                 controller.search.textProperty().setValue("");
             }
         });
-        controller.run.setOnAction(event -> run());
+        controller.run.setOnAction(event -> {
+            if (!isRunning){
+                run();
+            }
+        });
     }
 
 
@@ -60,7 +65,10 @@ public class Main extends Application {
     }
 
     private void run(){
-        controller.run.setDisable(true);
+        if (isRunning){
+            return;
+        }
+        isRunning = true;
         int resultsCount = 0;
         long startTime = System.currentTimeMillis();
         Random random = new Random();
@@ -75,5 +83,6 @@ public class Main extends Application {
                         "Randoms: " + resultsCount
         );
         controller.run.setDisable(false);
+        isRunning = false;
     }
 }
