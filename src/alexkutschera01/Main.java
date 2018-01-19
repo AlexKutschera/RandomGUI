@@ -82,7 +82,6 @@ public class Main extends Application {
                 "Runtime: " + runTime + "\n" +
                         "Randoms: " + resultsCount
         );
-        controller.run.setDisable(false);
         isRunning = false;
     }
 }
